@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blup</title>
+    <link rel="preload" as=image href="KOP1.JPG">
+    <link rel="preload" as=image href="KOP2.JPG">
+    <style type="text/css">
+      body{
+        background: url("KOP3.JPG") #100;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      div{
+        width: 1.4em; height: 1.4em;
+        background: rgba(255,255,255,0.2);
+        border: 0.1em solid white;
+        border-radius: 50%;
+        position: absolute;
+        left: 200px;
+        /*top: 62%; */
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.4);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <div></div>
+    <script type="text/javascript">
+      var blup = document.querySelector("div");
+      var container = document.querySelector("body");
+      var hap;
+      var resetter;
+
+      function happer(){
+        blup.style.backgroundColor = "rgba(255,255,255,0.9)"; //blup ding wit
+        container.style.cursor = "pointer"; //cursor wordt handje
+        container.style.backgroundImage = "url('KOP2.JPG')"; //mond open
+        hap = setTimeout(haphaphap, 160); //timeout voor de hap
+        var sec = 8*1000; //set seconden voor timeout
+        resetter = setTimeout(reset, sec); //timeout voor reset
+      }
+      function haphaphap() {
+        blup.removeEventListener("mouseover", happer); //onmouseover weghalen
+        blup.style.opacity = "0"; //blup ding onzichtbaar maken
+        container.style.cursor = "none"; //cursor op 'none' zetten
+        container.style.backgroundImage = "url('KOP1.JPG')"; //mond hap hap
+      }
+      function reset(){
+        blup.addEventListener("mouseover", happer); //onmouse over 'aan' zetten
+        blup.style.backgroundColor = "rgba(255,255,255,0.2)";
+        blup.style.opacity = "100";
+        container.style.cursor = "auto";
+        container.style.backgroundImage = "url('KOP3.JPG')";
+        clearTimeout(hap);
+        clearTimeout(resetter);
+      }
+      //blup.onmouseover = happer;
+      //blup.onmouseout = reset;
+      reset();
+
+
+      function setblup(){
+        var width = container.clientWidth;
+        var height = container.clientHeight;
+        //console.log("body width",width);
+        // console.log("body height",height);
+        blup.style.left = width*0.3;
+        blup.style.top = height*0.65;
+
+      }
+      window.onresize = setblup;
+      setblup();
+
+
+      // var my_image2 = new Image();
+      // // notify the user that the image has been preloaded, and reveal the
+      // // button to use the preloaded image
+      // function notify()  {
+      //     document.getElementById('preloadbutton2').style.display = 'none';
+      //     document.getElementById('after_preload').style.display = 'block';
+      // }
+      // function preload() {
+      //     my_image2.onload = notify;
+      //     my_image2.src = 'bigsaturn.jpg';
+      // }
+      // // using only the file name, we can take advantage of the preloaded image
+      // function use_preloaded_image() {
+      //     document.getElementById('saturnplaceholder').src = 'bigsaturn.jpg';
+      // }
+
+    </script>
+  </body>
+</html>
