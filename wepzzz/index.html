@@ -2,133 +2,118 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blup</title>
-    <link rel="preload" as=image href="KOP1.JPG">
-    <link rel="preload" as=image href="KOP2.JPG">
+    <title>Wepzzz</title>
+    <link rel="preload" as=image href="weps2.gif">
+    <link rel="preload" as=image href="weps3.gif">
     <style type="text/css">
       * {
         box-sizing: border-box;
       }
+      :root {
+        --dood: -10deg;
+        --top: 200px;
+        --left: 200px;
+      }
       body{
+        overflow: hidden;
         margin: 0;
         padding: 0;
         background: black;
-        display: flex;
-        justify-content: center;
-      }
-      main{
-        /width: 100%;
-        height: 100%;
-        object-fit: none;
-        display: inline-block;
-        position: relative;
       }
       img{
-        height: 100%;
-      }
-      div{
-        background: red;
+        background-image: url('weps1.gif');
+        /background: pink;
+        width: 144px;
+        height: 159px;
         position: absolute;
-        left: 22%;
-        top: 62%;
-        background: none;
-        padding: 1rem;
+        top: var(--top);
+        left: var(--left);
+        transform: scale(0.6);
+        /border: 1px solid white;
+      }
+      .vliegen{
+        animation: orbit 6s linear infinite;
+      }
+      .steken{
+        background-image: url('weps2.gif');
+      }
+      .dood{
+        background-image: url('weps3.gif');
+        transform: rotate(var(--dood)) scale(0.5);
+        /* var(--dood); */
       }
       h1{
-        overflow: hidden;
-        /color: gold;
+        display: none;
+        color: gold;
         margin: 0;
-        line-height: 777rem;
-        width: 2rem; height: 2rem;
-        background: rgba(255,255,255,0.2);
-        border: 0.05em solid white;
-        border-radius: 50%;
-        display: inline-block;
-        animation: pulse 2s infinite;
-      }
-      .rollover{
-        background: rgba(255,255,255,0.9);
-      }
-      .hide{
-          opacity: 0;
-      }
-      .cursorpointer{
-        cursor: pointer;
-      }
-      .cursornone{
-        cursor: none;
+        font-size: 0.8em;
+        font-weight: normal;
       }
       @keyframes pulse {
         0% {
-          transform: scale(1);
+          transform: scale(0.6);
         }
         50% {
-          transform: scale(1.4);
+          transform: scale(0.4);
         }
         100% {
-          transform: scale(1);
+          transform: scale(0.6);
         }
       }
+      @keyframes orbit {
+          0% { transform: rotate(0deg) translateX(150px) rotate(0deg) scale(0.5); }
+          25% { transform: rotate(90deg) translateX(150px) rotate(-90deg) scale(0.3); }
+          50% { transform: rotate(180deg) translateX(150px) rotate(-180deg) scale(0.5);  }
+          75% { transform: rotate(270deg) translateX(150px) rotate(-270deg) scale(0.6); }
+          100% { transform: rotate(360deg) translateX(150px) rotate(-360deg) scale(0.5) ; }
+      }
+
+
+
 
     </style>
   </head>
   <body>
 
-    <main>
-      <div>
-        <h1>Kopo - Digital Designer & Docent</h1>
-      </div>
-      <img />
-    </main>
+    <h1>Kopo - Digital Designer & Docent</h1>
 
     <script type="text/javascript">
       var container = document.querySelector("body");
-      var hit = document.querySelector("div");
-      var blup = document.querySelector("h1");
-      var kop = document.querySelector("img");
-      var hap; //timeout voor de hap
-      var hapsec = 0.160; //seconden voor de hap animatie
-      var reset; //timeout na klik
-      var resetsec = 8; //seconden voor de reset timeout
+      var weps = document.createElement("img");
+      weps.classList.add("vliegen");
 
-      function happer(){
-        kop.src="KOP2.JPG"; //mond open
-        blup.classList.add("rollover"); //blup ding wit maken met rollover
-        container.classList.add("cursorpointer"); //cursor wordt handje
-        hap = setTimeout(haphaphap, hapsec*1000); //timeout voor de hap
-        reset = setTimeout(setup, resetsec*1000); //timeout in miliseconden voor reset
+      function steken(){
+        this.classList.add("steken");
       }
-      function haphaphap() {
-        kop.src="KOP1.JPG"; //mond hap hap
-        hit.removeEventListener("mouseover", happer); //onmouseover weghalen
-        blup.classList.replace("rollover","hide"); //blup ding onzichtbaar maken
-        container.classList.replace("cursorpointer","cursornone"); //cursor op 'none' zetten
+      function vliegen(){
+        this.classList.remove("steken");
       }
-      function setup(){
-        kop.src="KOP3.JPG";
-        hit.addEventListener("mouseover", happer); //onmouse over 'aan' zetten
-        blup.classList.remove("hide"); //blup ding weer zichtbaar maken
-        container.classList.remove("cursornone");
-        clearTimeout(hap);
-        clearTimeout(reset);
-      }
-      setup();
+      function meppen(){
+        this.removeEventListener("mouseover",steken);
+        this.removeEventListener("mouseout",vliegen);
+      //this.removeEventListener("click",meppen);
 
-      // var my_image2 = new Image();
-      // // notify the user that the image has been preloaded, and reveal the
-      // // button to use the preloaded image
-      // function notify()  {
-      //     document.getElementById('preloadbutton2').style.display = 'none';
-      //     document.getElementById('after_preload').style.display = 'block';
-      // }
-      // function preload() {
-      //     my_image2.onload = notify;
-      //     my_image2.src = 'bigsaturn.jpg';
-      // }
-      // // using only the file name, we can take advantage of the preloaded image
-      // function use_preloaded_image() {
-      //     document.getElementById('saturnplaceholder').src = 'bigsaturn.jpg';
-      // }
+        this.classList.remove("vliegen");
+        this.classList.remove("steken");
+
+        var pos = this.getBoundingClientRect();
+        this.style.setProperty("--top", pos.top+"px");
+        this.style.setProperty("--left", pos.left+"px");
+        this.style.setProperty("--dood", rotate()+"deg");
+        this.classList.add("dood");
+
+        // console.log("meppen", rotate())
+        var rect = this.getBoundingClientRect();
+        console.log(rect.top, rect.left);
+        console.log(this.offsetTop, this.offsetLeft)
+      }
+      function rotate(){
+        return Math.floor(Math.random() * 360);
+      }
+      weps.addEventListener("mouseover",steken);
+      weps.addEventListener("mouseout",vliegen);
+      weps.addEventListener("click",meppen);
+      container.appendChild(weps);
 
     </script>
   </body>
