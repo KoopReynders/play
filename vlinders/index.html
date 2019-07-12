@@ -8,46 +8,95 @@
       * {
         box-sizing: border-box;
       }
+      :root {
+        --top: -350;
+        --left: -350;
+        --scale: 0.7;
+      }
       body{
         margin: 0;
         padding: 0;
-        background-color: MistyRose;
-        /display: flex;
-        /justify-content: center;
+        background-color: LavenderBlush;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
-
       img{
-        /width: 20%;
-        /height: 20%;
+        position: absolute;
+        top: var(--top);
+        left: var(--left);
+        transform: scale(var(--scale));
+        /background: MistyRose;
+        transition: top 0.5s ease, left 0.5s ease;
+      }
+      .flip{
+        transform: scale(var(--scale)) scaleX(-1);
       }
       h1{
         margin: 0;
-        color: rgba(255,255,255,0.2);
+        padding-top: 0.8em;
+        color: pink;
         display: inline-block;
         font-size: 0.6em;
         font-weight: normal;
+        border-top: 1px dashed pink;
       }
 
     </style>
   </head>
   <body>
-
-<h1>Kopo - Digital Designer & Docent</h1>
-
-
-<img src="vlinder1.png" />
+    <h1>Kopo - Digital Designer</h1>
+    <img />
 
 
     <script type="text/javascript">
 
-      var vlinders = ['vlinder1.png', 'vlinder2.png', 'vlinder3.png', 'vlinder4.png', 'vlinder5.png', 'vlinder6.png'];
-      var v = 0;
+      var vleugels = ['vlinder1.png', 'vlinder2.png', 'vlinder3.png', 'vlinder4.png', 'vlinder5.png', 'vlinder6.png', 'vlinder4.png', 'vlinder2.png'];
+      var a = vleugels.length;
+      var v = 0; //counter
+      var t = 40; //vleugels fladderen in miliseconden
+      //console.log("aantal",a);
       var vlinder = document.querySelector("img");
+      var hoogte = 260;
+      var breedte = 200;
 
-      vlinder.addEventListener("click",function(){
-        vlinder.src=vlinders[v++];
-      })
+      //vlinder animatie
+      function fladderen() {
+        vlinder.src=vleugels[v++];
+        if(v==a) v=0;
+      }
+      var fladderen = window.setInterval(fladderen,t);
 
+      //mouse interactie
+      function vliegen(){
+        console.log("left",event.clientX,vlinder.offsetLeft+breedte);
+        if(event.clientX<vlinder.offsetLeft+breedte){
+          vlinder.classList.add("flip");
+          breedte = 160;
+        }else{
+          vlinder.classList.remove("flip");
+          breedte = 200;
+        }
+        var top = event.clientY-hoogte;
+        var left = event.clientX-breedte;
+        vlinder.style.setProperty("--top", top);
+        vlinder.style.setProperty("--left", left);
+      };
+
+      //setup voor de start
+      //met een 2 seconden delay
+      function setup(){
+        console.log("setup");
+        //positie van de eerte vlinder
+        var box = document.querySelector("h1");
+        vlinder.style.setProperty("--top", box.offsetTop-hoogte-10);
+        vlinder.style.setProperty("--left", box.offsetLeft-breedte+20);
+        //setup listeners
+        window.addEventListener('mousedown',vliegen);
+      }
+      window.addEventListener('resize', setup);
+      var start = window.setTimeout(setup,2000);
+      //setup();
     </script>
   </body>
 </html>
