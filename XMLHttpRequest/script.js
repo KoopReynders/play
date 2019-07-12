@@ -1,8 +1,8 @@
 /*
   variabelen:
 */
-// var dataURL = 'https://koopreynders.github.io/frontendvoordesigners/opdracht3/PE/data.html';
-// var dataURL = 'https://koopreynders.github.io/frontendvoordesigners/opdracht3/PE/data2.html';
+// var dataURL = 'https://koopreynders.github.io/play/XMLHttpRequest/data.html';
+// var dataURL = 'https://koopreynders.github.io/play/XMLHttpRequest/data2.html';
 var section = document.querySelector('section'); //section om de html in te laden
 var form = document.querySelector("form"); //formulier met file selectie
 
