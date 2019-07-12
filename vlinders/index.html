@@ -11,7 +11,7 @@
       :root {
         --top: -350;
         --left: -350;
-        --scale: 0.7;
+        --scale: 0.9;
       }
       body{
         margin: 0;
@@ -50,24 +50,33 @@
 
 
     <script type="text/javascript">
-
+      //declaratie van de variabelen
       var vleugels = ['vlinder1.png', 'vlinder2.png', 'vlinder3.png', 'vlinder4.png', 'vlinder5.png', 'vlinder6.png', 'vlinder4.png', 'vlinder2.png'];
       var a = vleugels.length;
       var v = 0; //counter
       var t = 40; //vleugels fladderen in miliseconden
       //console.log("aantal",a);
       var vlinder = document.querySelector("img");
-      var hoogte = 260;
+      var hoogte = 240;
       var breedte = 200;
 
-      //vlinder animatie
+      /*
+        Fladderen functie
+        Functie die de vlinder laat Fladderen
+        met een interval worden de vlinder plaatjes gewisseld
+      */
       function fladderen() {
         vlinder.src=vleugels[v++];
         if(v==a) v=0;
       }
       var fladderen = window.setInterval(fladderen,t);
 
-      //mouse interactie
+      /*
+        Vliegen functie
+        Functie die wordt aangeroepen als met de muis wordt geklikt
+        de vlinder zal naar de klik locatie Vliegen
+        De vlinder flipt als die de andere kant op vliegt
+      */
       function vliegen(){
         console.log("left",event.clientX,vlinder.offsetLeft+breedte);
         if(event.clientX<vlinder.offsetLeft+breedte){
@@ -83,20 +92,24 @@
         vlinder.style.setProperty("--left", left);
       };
 
-      //setup voor de start
-      //met een 2 seconden delay
+      /*
+        Setup functie
+        Functie voor de start van de vlinders
+        De eerste vlinder komt aanvliegen en gaat bovenop de h1 zitten
+      */
       function setup(){
         console.log("setup");
         //positie van de eerte vlinder
         var box = document.querySelector("h1");
-        vlinder.style.setProperty("--top", box.offsetTop-hoogte-10);
+        vlinder.style.setProperty("--top", box.offsetTop-hoogte-60);
         vlinder.style.setProperty("--left", box.offsetLeft-breedte+20);
-        //setup listeners
+        //setup listeners voor de muis interactie
         window.addEventListener('mousedown',vliegen);
       }
-      window.addEventListener('resize', setup);
-      var start = window.setTimeout(setup,2000);
+      window.addEventListener('resize', setup); //als de grootte van het window wordt aangepast vliegt de vlinder weer naar de begin positie
+      var start = window.setTimeout(setup,2000); //met een delay van 2 seconden wordt de setup functie aangeroepen
       //setup();
+
     </script>
   </body>
 </html>
