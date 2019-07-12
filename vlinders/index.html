@@ -2,9 +2,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blup</title>
-    <link rel="preload" as=image href="KOP1.JPG">
-    <link rel="preload" as=image href="KOP2.JPG">
+    <title>Vlinders</title>
+
     <style type="text/css">
       * {
         box-sizing: border-box;
@@ -12,123 +11,42 @@
       body{
         margin: 0;
         padding: 0;
-        background: black;
-        display: flex;
-        justify-content: center;
+        background-color: MistyRose;
+        /display: flex;
+        /justify-content: center;
       }
-      main{
-        /width: 100%;
-        height: 100%;
-        object-fit: none;
-        display: inline-block;
-        position: relative;
-      }
+
       img{
-        height: 100%;
-      }
-      div{
-        background: red;
-        position: absolute;
-        left: 22%;
-        top: 62%;
-        background: none;
-        padding: 1rem;
+        /width: 20%;
+        /height: 20%;
       }
       h1{
-        overflow: hidden;
-        /color: gold;
         margin: 0;
-        line-height: 777rem;
-        width: 2rem; height: 2rem;
-        background: rgba(255,255,255,0.2);
-        border: 0.05em solid white;
-        border-radius: 50%;
+        color: rgba(255,255,255,0.2);
         display: inline-block;
-        animation: pulse 2s infinite;
-      }
-      .rollover{
-        background: rgba(255,255,255,0.9);
-      }
-      .hide{
-          opacity: 0;
-      }
-      .cursorpointer{
-        cursor: pointer;
-      }
-      .cursornone{
-        cursor: none;
-      }
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.4);
-        }
-        100% {
-          transform: scale(1);
-        }
+        font-size: 0.6em;
+        font-weight: normal;
       }
 
     </style>
   </head>
   <body>
 
-    <main>
-      <div>
-        <h1>Kopo - Digital Designer & Docent</h1>
-      </div>
-      <img />
-    </main>
+<h1>Kopo - Digital Designer & Docent</h1>
+
+
+<img src="vlinder1.png" />
+
 
     <script type="text/javascript">
-      var container = document.querySelector("body");
-      var hit = document.querySelector("div");
-      var blup = document.querySelector("h1");
-      var kop = document.querySelector("img");
-      var hap; //timeout voor de hap
-      var hapsec = 0.160; //seconden voor de hap animatie
-      var reset; //timeout na klik
-      var resetsec = 8; //seconden voor de reset timeout
 
-      function happer(){
-        kop.src="KOP2.JPG"; //mond open
-        blup.classList.add("rollover"); //blup ding wit maken met rollover
-        container.classList.add("cursorpointer"); //cursor wordt handje
-        hap = setTimeout(haphaphap, hapsec*1000); //timeout voor de hap
-        reset = setTimeout(setup, resetsec*1000); //timeout in miliseconden voor reset
-      }
-      function haphaphap() {
-        kop.src="KOP1.JPG"; //mond hap hap
-        hit.removeEventListener("mouseover", happer); //onmouseover weghalen
-        blup.classList.replace("rollover","hide"); //blup ding onzichtbaar maken
-        container.classList.replace("cursorpointer","cursornone"); //cursor op 'none' zetten
-      }
-      function setup(){
-        kop.src="KOP3.JPG";
-        hit.addEventListener("mouseover", happer); //onmouse over 'aan' zetten
-        blup.classList.remove("hide"); //blup ding weer zichtbaar maken
-        container.classList.remove("cursornone");
-        clearTimeout(hap);
-        clearTimeout(reset);
-      }
-      setup();
+      var vlinders = ['vlinder1.png', 'vlinder2.png', 'vlinder3.png', 'vlinder4.png', 'vlinder5.png', 'vlinder6.png'];
+      var v = 0;
+      var vlinder = document.querySelector("img");
 
-      // var my_image2 = new Image();
-      // // notify the user that the image has been preloaded, and reveal the
-      // // button to use the preloaded image
-      // function notify()  {
-      //     document.getElementById('preloadbutton2').style.display = 'none';
-      //     document.getElementById('after_preload').style.display = 'block';
-      // }
-      // function preload() {
-      //     my_image2.onload = notify;
-      //     my_image2.src = 'bigsaturn.jpg';
-      // }
-      // // using only the file name, we can take advantage of the preloaded image
-      // function use_preloaded_image() {
-      //     document.getElementById('saturnplaceholder').src = 'bigsaturn.jpg';
-      // }
+      vlinder.addEventListener("click",function(){
+        vlinder.src=vlinders[v++];
+      })
 
     </script>
   </body>
