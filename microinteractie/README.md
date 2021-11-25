@@ -1,5 +1,7 @@
 # Micro interactie met javascript
 
+Voorbeeld: https://koopreynders.github.io/play/microinteractie/
+
 Stappenplan
 0. queryselector om de button en de header te kunnen gebruiken in js
 1. click op de button
