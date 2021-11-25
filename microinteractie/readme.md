@@ -1,4 +1,5 @@
 **Micro interactie met javascript: **
+
 0: queryselector om de button en de header te kunnen gebruiken in js
 1: click op de button
 2: met classlist toggle de class "show-search" op de header zetten
