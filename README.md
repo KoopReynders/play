@@ -7,3 +7,4 @@ javascript, css en html experimenten.
 
 
 - [HTML laden](XMLHttpRequest)
+- [CSS @support demo met voorbeeld code](css-support)
