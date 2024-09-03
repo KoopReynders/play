@@ -6,5 +6,5 @@ javascript, css en html experimenten.
 - [Vlinders](vlinders)
 
 
-- [HTML laden](XMLHttpRequest)
+- [HTML laden met ](XMLHttpRequest)
 - [CSS @support demo met voorbeeld code](css-support)
